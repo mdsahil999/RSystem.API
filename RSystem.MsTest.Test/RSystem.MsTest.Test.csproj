@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\RSystem.API.Model\RSystem.API.Model.csproj" />
     <ProjectReference Include="..\RSystem.API.Service\RSystem.API.Service.csproj" />
+    <ProjectReference Include="..\RSystem.API\RSystem.API.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Castle.Core" Version="5.1.1" />
