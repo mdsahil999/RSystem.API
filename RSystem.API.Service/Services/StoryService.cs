@@ -23,7 +23,7 @@ namespace RSystem.API.Service.Services
                 if (ids == null || ids.Count == 0)
                     throw new Exception("No story IDs found from Hacker News.");
 
-                var tasks = ids.Select(async id =>
+                var tasks = ids.Take(200).Select(async id =>
                 {
                     try
                     {
