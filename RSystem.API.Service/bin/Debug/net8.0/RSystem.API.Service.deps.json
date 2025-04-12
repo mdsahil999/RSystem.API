@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "RSystem.API.Service/1.0.0": {
+        "dependencies": {
+          "RSystem.API.Model": "1.0.0"
+        },
+        "runtime": {
+          "RSystem.API.Service.dll": {}
+        }
+      },
+      "RSystem.API.Model/1.0.0": {
+        "runtime": {
+          "RSystem.API.Model.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RSystem.API.Service/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSystem.API.Model/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

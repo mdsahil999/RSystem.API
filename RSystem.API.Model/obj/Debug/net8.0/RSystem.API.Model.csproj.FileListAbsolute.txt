@@ -1,0 +1,11 @@
+D:\Stories-Rsystems\RSystem.API\RSystem.API.Model\bin\Debug\net8.0\RSystem.API.Model.deps.json
+D:\Stories-Rsystems\RSystem.API\RSystem.API.Model\bin\Debug\net8.0\RSystem.API.Model.dll
+D:\Stories-Rsystems\RSystem.API\RSystem.API.Model\bin\Debug\net8.0\RSystem.API.Model.pdb
+D:\Stories-Rsystems\RSystem.API\RSystem.API.Model\obj\Debug\net8.0\RSystem.API.Model.GeneratedMSBuildEditorConfig.editorconfig
+D:\Stories-Rsystems\RSystem.API\RSystem.API.Model\obj\Debug\net8.0\RSystem.API.Model.AssemblyInfoInputs.cache
+D:\Stories-Rsystems\RSystem.API\RSystem.API.Model\obj\Debug\net8.0\RSystem.API.Model.AssemblyInfo.cs
+D:\Stories-Rsystems\RSystem.API\RSystem.API.Model\obj\Debug\net8.0\RSystem.API.Model.csproj.CoreCompileInputs.cache
+D:\Stories-Rsystems\RSystem.API\RSystem.API.Model\obj\Debug\net8.0\RSystem.API.Model.dll
+D:\Stories-Rsystems\RSystem.API\RSystem.API.Model\obj\Debug\net8.0\refint\RSystem.API.Model.dll
+D:\Stories-Rsystems\RSystem.API\RSystem.API.Model\obj\Debug\net8.0\RSystem.API.Model.pdb
+D:\Stories-Rsystems\RSystem.API\RSystem.API.Model\obj\Debug\net8.0\ref\RSystem.API.Model.dll
