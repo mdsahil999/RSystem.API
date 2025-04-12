@@ -9,6 +9,10 @@ D:\Stories-Rsystems\RSystem.API\RSystem.API\bin\Debug\net8.0\Microsoft.OpenApi.d
 D:\Stories-Rsystems\RSystem.API\RSystem.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Stories-Rsystems\RSystem.API\RSystem.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Stories-Rsystems\RSystem.API\RSystem.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Stories-Rsystems\RSystem.API\RSystem.API\bin\Debug\net8.0\RSystem.API.Model.dll
+D:\Stories-Rsystems\RSystem.API\RSystem.API\bin\Debug\net8.0\RSystem.API.Service.dll
+D:\Stories-Rsystems\RSystem.API\RSystem.API\bin\Debug\net8.0\RSystem.API.Service.pdb
+D:\Stories-Rsystems\RSystem.API\RSystem.API\bin\Debug\net8.0\RSystem.API.Model.pdb
 D:\Stories-Rsystems\RSystem.API\RSystem.API\obj\Debug\net8.0\RSystem.API.csproj.AssemblyReference.cache
 D:\Stories-Rsystems\RSystem.API\RSystem.API\obj\Debug\net8.0\RSystem.API.GeneratedMSBuildEditorConfig.editorconfig
 D:\Stories-Rsystems\RSystem.API\RSystem.API\obj\Debug\net8.0\RSystem.API.AssemblyInfoInputs.cache
@@ -16,6 +20,7 @@ D:\Stories-Rsystems\RSystem.API\RSystem.API\obj\Debug\net8.0\RSystem.API.Assembl
 D:\Stories-Rsystems\RSystem.API\RSystem.API\obj\Debug\net8.0\RSystem.API.csproj.CoreCompileInputs.cache
 D:\Stories-Rsystems\RSystem.API\RSystem.API\obj\Debug\net8.0\RSystem.API.MvcApplicationPartsAssemblyInfo.cs
 D:\Stories-Rsystems\RSystem.API\RSystem.API\obj\Debug\net8.0\RSystem.API.MvcApplicationPartsAssemblyInfo.cache
+D:\Stories-Rsystems\RSystem.API\RSystem.API\obj\Debug\net8.0\RSystem.API.sourcelink.json
 D:\Stories-Rsystems\RSystem.API\RSystem.API\obj\Debug\net8.0\staticwebassets.build.json
 D:\Stories-Rsystems\RSystem.API\RSystem.API\obj\Debug\net8.0\staticwebassets.development.json
 D:\Stories-Rsystems\RSystem.API\RSystem.API\obj\Debug\net8.0\staticwebassets\msbuild.RSystem.API.Microsoft.AspNetCore.StaticWebAssets.props
@@ -30,7 +35,3 @@ D:\Stories-Rsystems\RSystem.API\RSystem.API\obj\Debug\net8.0\refint\RSystem.API.
 D:\Stories-Rsystems\RSystem.API\RSystem.API\obj\Debug\net8.0\RSystem.API.pdb
 D:\Stories-Rsystems\RSystem.API\RSystem.API\obj\Debug\net8.0\RSystem.API.genruntimeconfig.cache
 D:\Stories-Rsystems\RSystem.API\RSystem.API\obj\Debug\net8.0\ref\RSystem.API.dll
-D:\Stories-Rsystems\RSystem.API\RSystem.API\bin\Debug\net8.0\RSystem.API.Model.dll
-D:\Stories-Rsystems\RSystem.API\RSystem.API\bin\Debug\net8.0\RSystem.API.Service.dll
-D:\Stories-Rsystems\RSystem.API\RSystem.API\bin\Debug\net8.0\RSystem.API.Service.pdb
-D:\Stories-Rsystems\RSystem.API\RSystem.API\bin\Debug\net8.0\RSystem.API.Model.pdb

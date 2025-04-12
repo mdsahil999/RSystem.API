@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RSystem.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d766e7e4d3e8cfd89ac454408401fdb3516c700")]
 [assembly: System.Reflection.AssemblyProductAttribute("RSystem.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RSystem.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

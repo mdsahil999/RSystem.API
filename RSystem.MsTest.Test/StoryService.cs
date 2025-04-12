@@ -16,7 +16,7 @@ namespace RSystem.MsTest.Test
 {
 
     [TestClass]
-    public class HackerNewsServiceTests
+    public class StoryServiceTests
     {
         private HttpClient CreateMockHttpClient(Dictionary<string, string> responses)
         {
