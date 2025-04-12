@@ -13,7 +13,7 @@ namespace RSystem.API.Controllers
         }
 
         [HttpGet]
-        //[ResponseCache(Duration = 60)]
+        [ResponseCache(Duration = 60)]
         public async Task<IActionResult> GetAll()
         {
             var result = await this._storyService.GetAll();
