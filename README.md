@@ -4,11 +4,11 @@ This project is a .NET Core Web API application that fetches and returns the lat
 
 ---
 
-## 🚀 Features
+## Features
 
-- ✅ ASP.NET Core Web API
-- ✅ Integration with Hacker News API
-- ✅ Filters out stories without valid URLs
-- ✅ Caching using `[ResponseCache]`
-- ✅ Unit testing using MSTest and Moq
-- ✅ Mocked HTTP responses for reliable test coverage
+- ASP.NET Core Web API
+- Integration with Hacker News API
+- Filters out stories without valid URLs
+- Caching using `[ResponseCache]`
+- Unit testing using MSTest and Moq
+- Mocked HTTP responses for reliable test coverage
