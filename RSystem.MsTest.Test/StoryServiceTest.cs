@@ -11,16 +11,30 @@ using System.Linq;
 using System.Text.Json;
 using RSystem.API.Model.Dto;
 using RSystem.API.Service.Services;
+using Microsoft.Extensions.Configuration;
 
 namespace RSystem.MsTest.Test
 {
     [TestClass]
     public class StoryServiceTests
     {
+        private const string BaseUrl = "https://hacker-news.firebaseio.com/v0/";
+        private const string MaxStories = "200";
+
+        /// <summary>
+        /// Creates a mock IConfiguration with expected values.
+        /// </summary>
+        private IConfiguration CreateMockConfiguration()
+        {
+            var mockConfig = new Mock<IConfiguration>();
+            mockConfig.Setup(c => c["HackerNewsSettings:BaseUrl"]).Returns(BaseUrl);
+            mockConfig.Setup(c => c["HackerNewsSettings:MaxStories"]).Returns(MaxStories);
+            return mockConfig.Object;
+        }
+
         /// <summary>
         /// Creates a mock HttpClient that returns predefined responses for specific URLs.
         /// </summary>
-        /// <param name="responses">Dictionary mapping request URLs to response content.</param>
         private HttpClient CreateMockHttpClient(Dictionary<string, string> responses)
         {
             var handlerMock = new Mock<HttpMessageHandler>();
@@ -50,32 +64,27 @@ namespace RSystem.MsTest.Test
                     });
                 });
 
-            return new HttpClient(handlerMock.Object)
-            {
-                BaseAddress = new Uri("https://hacker-news.firebaseio.com/")
-            };
+            return new HttpClient(handlerMock.Object);
         }
 
-        /// <summary>
-        /// Verifies that GetAll returns only valid stories that have a non-null URL.
-        /// </summary>
         [TestMethod]
         public async Task GetAll_Returns_Only_Valid_Stories_With_Urls()
         {
             // Arrange
             var storyIds = new List<int> { 1001, 1002, 1003 };
-            var idUrl = "https://hacker-news.firebaseio.com/v0/newstories.json";
+            var idUrl = $"{BaseUrl}newstories.json";
 
             var fakeResponses = new Dictionary<string, string>
             {
                 [idUrl] = JsonSerializer.Serialize(storyIds),
-                [$"https://hacker-news.firebaseio.com/v0/item/1001.json"] = JsonSerializer.Serialize(new StoryDto { Id = 1001, Url = "https://example.com/1", Title = "Story 1" }),
-                [$"https://hacker-news.firebaseio.com/v0/item/1002.json"] = JsonSerializer.Serialize(new StoryDto { Id = 1002, Url = null, Title = "Story 2" }), // Invalid story (no URL)
-                [$"https://hacker-news.firebaseio.com/v0/item/1003.json"] = "null" // Simulate null response
+                [$"{BaseUrl}item/1001.json"] = JsonSerializer.Serialize(new StoryDto { Id = 1001, Url = "https://example.com/1", Title = "Story 1" }),
+                [$"{BaseUrl}item/1002.json"] = JsonSerializer.Serialize(new StoryDto { Id = 1002, Url = null, Title = "Story 2" }),
+                [$"{BaseUrl}item/1003.json"] = "null"
             };
 
             var httpClient = CreateMockHttpClient(fakeResponses);
-            var service = new StoryService(httpClient);
+            var config = CreateMockConfiguration();
+            var service = new StoryService(httpClient, config);
 
             // Act
             var result = await service.GetAll();
@@ -85,52 +94,40 @@ namespace RSystem.MsTest.Test
             Assert.AreEqual(1001, result.First().Id);
         }
 
-        /// <summary>
-        /// Verifies that an exception is thrown when the story ID list cannot be fetched (empty response).
-        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(Exception), "Failed to retrieve Hacker News stories.")]
         public async Task GetAll_Throws_Exception_When_Ids_Not_Fetched()
         {
-            // Arrange
-            var idUrl = "https://hacker-news.firebaseio.com/v0/newstories.json";
+            var idUrl = $"{BaseUrl}newstories.json";
 
             var fakeResponses = new Dictionary<string, string>
             {
-                [idUrl] = "" // Empty response simulates failure to fetch IDs
+                [idUrl] = ""
             };
 
             var httpClient = CreateMockHttpClient(fakeResponses);
-            var service = new StoryService(httpClient);
+            var config = CreateMockConfiguration();
+            var service = new StoryService(httpClient, config);
 
-            // Act
             await service.GetAll();
-
-            // Assert is handled by [ExpectedException]
         }
 
-        /// <summary>
-        /// Verifies that an exception is thrown when the story ID list is empty.
-        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(Exception), "No story IDs found from Hacker News.")]
         public async Task GetAll_Throws_Exception_When_Id_List_Is_Empty()
         {
-            // Arrange
-            var idUrl = "https://hacker-news.firebaseio.com/v0/newstories.json";
+            var idUrl = $"{BaseUrl}newstories.json";
 
             var fakeResponses = new Dictionary<string, string>
             {
-                [idUrl] = "[]" // Simulates empty ID list
+                [idUrl] = "[]"
             };
 
             var httpClient = CreateMockHttpClient(fakeResponses);
-            var service = new StoryService(httpClient);
+            var config = CreateMockConfiguration();
+            var service = new StoryService(httpClient, config);
 
-            // Act
             await service.GetAll();
-
-            // Assert is handled by [ExpectedException]
         }
     }
 }

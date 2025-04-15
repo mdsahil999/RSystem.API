@@ -2,6 +2,7 @@
 using RSystem.API.Service.Interfaces;
 using System.Net.Http.Json;
 using System.Text.Json;
+using Microsoft.Extensions.Configuration;
 
 namespace RSystem.API.Service.Services
 {
@@ -10,14 +11,17 @@ namespace RSystem.API.Service.Services
         private readonly HttpClient _httpClient;
 
         // Base URL for Hacker News API
-        private const string BaseUrl = "https://hacker-news.firebaseio.com/v0/";
+        private readonly string _baseUrl;
 
         // Maximum number of stories to fetch
-        private const int MaxStories = 200;
+        private readonly int _maxStories;
 
-        public StoryService(HttpClient httpClient)
+        public StoryService(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
+            _baseUrl = configuration["HackerNewsSettings:BaseUrl"] ?? throw new ArgumentNullException("BaseUrl not found");
+            _maxStories = int.Parse(configuration["HackerNewsSettings:MaxStories"] ?? "100"); // fallback to 100
+
         }
 
         // Fetches the latest stories from Hacker News
@@ -33,7 +37,7 @@ namespace RSystem.API.Service.Services
                     throw new Exception("No story IDs found from Hacker News.");
 
                 // Step 2: Fetch story details for the first 200 stories
-                var stories = await FetchStoriesAsync(ids.Take(MaxStories));
+                var stories = await FetchStoriesAsync(ids.Take(_maxStories));
 
                 // Step 3: Filter out null or invalid stories (e.g., missing URL)
                 return stories
@@ -51,7 +55,7 @@ namespace RSystem.API.Service.Services
         // Fetches the list of new story IDs from Hacker News
         private async Task<List<int>?> FetchStoryIdsAsync()
         {
-            var response = await _httpClient.GetStringAsync($"{BaseUrl}newstories.json");
+            var response = await _httpClient.GetStringAsync($"{_baseUrl}newstories.json");
             return JsonSerializer.Deserialize<List<int>>(response);
         }
 
@@ -64,7 +68,7 @@ namespace RSystem.API.Service.Services
                 try
                 {
                     // Try to fetch story data; skip if an error occurs
-                    return await _httpClient.GetFromJsonAsync<StoryDto>($"{BaseUrl}item/{id}.json");
+                    return await _httpClient.GetFromJsonAsync<StoryDto>($"{_baseUrl}item/{id}.json");
                 }
                 catch
                 {
