@@ -15,6 +15,9 @@ namespace RSystem.MsTest.Test
         private Mock<IStoryService> _storyServiceMock;
         private StoryController _controller;
 
+        /// <summary>
+        /// Initializes test dependencies before each test runs.
+        /// </summary>
         [TestInitialize]
         public void Setup()
         {
@@ -22,10 +25,14 @@ namespace RSystem.MsTest.Test
             _controller = new StoryController(_storyServiceMock.Object);
         }
 
+        /// <summary>
+        /// Test to verify that the GetAll method returns an Ok result
+        /// with the expected list of stories.
+        /// </summary>
         [TestMethod]
         public async Task GetAll_ReturnsOkResult_WithListOfStories()
         {
-            // Arrange
+            // Arrange: Set up expected result
             var expectedStories = new List<StoryDto>
             {
                 new StoryDto { Id = 1, Title = "Sample Story", Url = "https://example.com" }
@@ -34,10 +41,10 @@ namespace RSystem.MsTest.Test
             _storyServiceMock.Setup(service => service.GetAll())
                 .ReturnsAsync(expectedStories);
 
-            // Act
+            // Act: Call the controller method
             var actionResult = await _controller.GetAll();
 
-            // Assert
+            // Assert: Verify the response is Ok (200) with correct data
             var okResult = actionResult as OkObjectResult;
             Assert.IsNotNull(okResult);
             Assert.AreEqual(200, okResult.StatusCode);

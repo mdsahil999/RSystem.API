@@ -8,15 +8,23 @@ namespace RSystem.API.Controllers
     public class StoryController : Controller
     {
         private readonly IStoryService _storyService;
-        public StoryController(IStoryService storyService) { 
-            this._storyService = storyService;
+
+        // Constructor injection of IStoryService
+        public StoryController(IStoryService storyService)
+        {
+            _storyService = storyService;
         }
 
+        /// <summary>
+        /// Retrieves the latest stories from Hacker News.
+        /// Response is cached for 60 seconds.
+        /// </summary>
+        /// <returns>A list of stories in JSON format.</returns>
         [HttpGet]
-        [ResponseCache(Duration = 60)]
+        [ResponseCache(Duration = 60)] // Cache the response for 60 seconds
         public async Task<IActionResult> GetAll()
         {
-            var result = await this._storyService.GetAll();
+            var result = await _storyService.GetAll();
             return Ok(result);
         }
     }

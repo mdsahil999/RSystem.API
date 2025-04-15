@@ -14,10 +14,13 @@ using RSystem.API.Service.Services;
 
 namespace RSystem.MsTest.Test
 {
-
     [TestClass]
     public class StoryServiceTests
     {
+        /// <summary>
+        /// Creates a mock HttpClient that returns predefined responses for specific URLs.
+        /// </summary>
+        /// <param name="responses">Dictionary mapping request URLs to response content.</param>
         private HttpClient CreateMockHttpClient(Dictionary<string, string> responses)
         {
             var handlerMock = new Mock<HttpMessageHandler>();
@@ -53,6 +56,9 @@ namespace RSystem.MsTest.Test
             };
         }
 
+        /// <summary>
+        /// Verifies that GetAll returns only valid stories that have a non-null URL.
+        /// </summary>
         [TestMethod]
         public async Task GetAll_Returns_Only_Valid_Stories_With_Urls()
         {
@@ -64,7 +70,7 @@ namespace RSystem.MsTest.Test
             {
                 [idUrl] = JsonSerializer.Serialize(storyIds),
                 [$"https://hacker-news.firebaseio.com/v0/item/1001.json"] = JsonSerializer.Serialize(new StoryDto { Id = 1001, Url = "https://example.com/1", Title = "Story 1" }),
-                [$"https://hacker-news.firebaseio.com/v0/item/1002.json"] = JsonSerializer.Serialize(new StoryDto { Id = 1002, Url = null, Title = "Story 2" }), // Should be filtered
+                [$"https://hacker-news.firebaseio.com/v0/item/1002.json"] = JsonSerializer.Serialize(new StoryDto { Id = 1002, Url = null, Title = "Story 2" }), // Invalid story (no URL)
                 [$"https://hacker-news.firebaseio.com/v0/item/1003.json"] = "null" // Simulate null response
             };
 
@@ -79,6 +85,9 @@ namespace RSystem.MsTest.Test
             Assert.AreEqual(1001, result.First().Id);
         }
 
+        /// <summary>
+        /// Verifies that an exception is thrown when the story ID list cannot be fetched (empty response).
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(Exception), "Failed to retrieve Hacker News stories.")]
         public async Task GetAll_Throws_Exception_When_Ids_Not_Fetched()
@@ -88,7 +97,7 @@ namespace RSystem.MsTest.Test
 
             var fakeResponses = new Dictionary<string, string>
             {
-                [idUrl] = ""
+                [idUrl] = "" // Empty response simulates failure to fetch IDs
             };
 
             var httpClient = CreateMockHttpClient(fakeResponses);
@@ -100,6 +109,9 @@ namespace RSystem.MsTest.Test
             // Assert is handled by [ExpectedException]
         }
 
+        /// <summary>
+        /// Verifies that an exception is thrown when the story ID list is empty.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(Exception), "No story IDs found from Hacker News.")]
         public async Task GetAll_Throws_Exception_When_Id_List_Is_Empty()
@@ -109,7 +121,7 @@ namespace RSystem.MsTest.Test
 
             var fakeResponses = new Dictionary<string, string>
             {
-                [idUrl] = "[]"
+                [idUrl] = "[]" // Simulates empty ID list
             };
 
             var httpClient = CreateMockHttpClient(fakeResponses);
@@ -120,7 +132,5 @@ namespace RSystem.MsTest.Test
 
             // Assert is handled by [ExpectedException]
         }
-
-
     }
 }
